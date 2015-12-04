@@ -1,0 +1,40 @@
+{
+  "name": "minesweeper",
+  "version": "0.0.1",
+  "description": "Classic minesweeper game with HTML, JS and CSS",
+  "main": "index.js",
+  "scripts": {
+    "lint": "node lint/lint",
+    "test": "node test/test",
+    "build": "node build",
+    "build:dev": "node build --dev",
+    "start": "node index",
+    "launch": "npm install --production && node build && node index",
+    "launch:dev": "npm install --dev && node build --dev && node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasfrantz/pokerManager.git"
+  },
+  "keywords": [
+    "minesweeper",
+    "js",
+    "html",
+    "css",
+    "game"
+  ],
+  "author": "Thomas Frantz <thom.frantz@gmail.com>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/thomasfrantz/minesweeper/issues",
+    "email": "thom.frantz@gmail.com"
+  },
+  "homepage": "https://github.com/thomasfrantz/minesweeper#readme",
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "jasmine": "^2.3.2"
+  },
+  "dependencies": {
+    "http-server": "^0.8.5"
+  }
+}

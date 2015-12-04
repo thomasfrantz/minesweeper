@@ -1,0 +1,20 @@
+1. Required functionalities :
+- Show a predefined sized grid in html+css
+- Calculate a minefield with a predefined size and number of mines
+- Associate html grid and minefield
+- On left-click, discover a case
+- If you left-click on a mine, you lose
+- If you left click all the non-mine cases, you win
+
+2. Advanced functionalities
+- Show a grid sized with parameters in html+css
+- If you left click on a blank case (no mine around), show all touching blank cases
+- Easy, Medium, Hard mode
+- Custom mode (you enter the size and the number of mines)
+- Restart button
+
+3. Cosmetic functionalities
+- On right-click, put a flag on a case if it doesn't have one, remove it if there is one
+- Beautiful cases
+- petite animation pour Game Over
+- Effect when you click on cases
