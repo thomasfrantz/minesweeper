@@ -35,6 +35,7 @@
     "jasmine": "^2.3.2"
   },
   "dependencies": {
+    "glob": "^6.0.1",
     "http-server": "^0.8.5"
   }
 }
