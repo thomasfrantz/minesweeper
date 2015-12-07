@@ -31,6 +31,8 @@
   },
   "homepage": "https://github.com/thomasfrantz/minesweeper#readme",
   "devDependencies": {
+    "chalk": "^1.1.1",
+    "cli-color": "^1.1.0",
     "eslint": "^1.10.3",
     "jasmine": "^2.3.2"
   },
