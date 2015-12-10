@@ -32,7 +32,7 @@ function startNsWidget(configArray){
     window.nswidget.ajaxCount = 0;
 
     // First we add the 9 squares button, then the block we'll put the apps in. The applications block is not visible at first
-    var appButton = '<div class="icon app-button" style="margin-left:500px;background-image: url(\'' + mainIconUrl + '\');"><span class="loader"><img src=\'' + loadingIconUrl + '\' style="display:none;"></span></div>';
+    var appButton = "<div class=\"icon app-button\" style=\"margin-left:500px;background-image: url('" + mainIconUrl + "');\"><span class=\"loader\"><img src='" + loadingIconUrl + "' style=\"display:none;\"></span></div>";
     var applications = "<div class=\"applications\" style=\"display:none;\"></div>";
     var applicationsWidget = $("#ns-widget");
     applicationsWidget.append(appButton);
@@ -138,14 +138,14 @@ function authCas(authName, authServices){
                     var refreshTime = service.refreshTime || 300000;
                     getZimbraData();
                     if(refreshTime > 0){ // If the attribute refreshTime exists, we execute the service every refreshTime seconds
-                            $(document).ready(function(){
-                                setInterval("getZimbraData()", refreshTime);
-                            });
-                        }
+                        $(document).ready(function(){
+                            setInterval("getZimbraData()", refreshTime);
+                        });
+                    }
                     break;
                 case "addApps":
                     if(authName === "zcs_personnel")
-                            addApps("personnel", service);
+                        addApps("personnel", service);
                         else if(authName === "zcs_etudiant")
                             addApps("etudiant", service);
                     break;
@@ -237,7 +237,7 @@ function addApps(target, service){
             var app = {};
             for(var i = 0; i < apps.length; i++){
                 app = apps[ i ];
-                var appTag = '<a class="vignette" title="' + app.title + '" href="' + app.url + '" ><span class="icon ' + app.title.toLowerCase() + '" title="' + app.title + '" style="background-image: url(\'' + app.iconUrl+"');\"></span></a>";
+                var appTag = "<a class=\"vignette\" title=\"" + app.title + "\" href=\"" + app.url + "\" ><span class=\"icon " + app.title.toLowerCase() + "\" title=\"" + app.title + "\" style=\"background-image: url('" + app.iconUrl + "');\"></span></a>";
                 if(app.end)
                     applications.append(appTag);
                 else
@@ -264,7 +264,7 @@ function tryConnexion(iconUrl, configArray){
         function(data){
             if($("#ns-widget .lock").length < 1){
                 var appButton = $("#ns-widget .icon.app-button");
-                var lock = '<span class="lock"><img src="' + iconUrl+"\"></span>";
+                var lock = "<span class=\"lock\"><img src=\"" + iconUrl + "\"></span>";
                 appButton.prepend(lock);
                 updateApplications(configArray);
             }
@@ -329,7 +329,7 @@ function updateBoxSize(maxApps){
     **/
     if(nbrApps > maxApps){
         var display = applications.css("display");
-        var plusButton = '<div class="plus-button" style="display:' + display+";\"><a href=\"\" onclick=\"return false;\">Plus d'applications</a></div>";
+        var plusButton = "<div class=\"plus-button\" style=\"display:" + display + ";\"><a href=\"\" onclick=\"return false;\">Plus d'applications</a></div>";
         applicationsWidget.append(plusButton);
         plusButton = $("#ns-widget .plus-button");
         plusButton.css("margin-top", boxHeight + 10 + 1); // plus-button offset = applications box height + applications box margin-top + 1
@@ -352,7 +352,7 @@ function updateBoxSize(maxApps){
         **/
         plusButton.children().on("click", function(){
             var boxWidth;
-            if(applications.css("overflow") == "hidden"){
+            if(applications.css("overflow") === "hidden"){
                 boxWidth = applications.css("width");
                 boxWidth = Math.round(boxWidth.substr(0, boxWidth.length - 2)) + 17; // If there are more applications than we want to show, a scrollbar will appear (overflow:auto) so we just add a scrollbar's width to the applications' box width
                 applications.css("width", boxWidth);
@@ -385,7 +385,7 @@ function updateApplications(configArray){
     // We create the clickable icons with the configuration JSON file
     for(var i = 0; i < nbrApps; i++){
         var app = apps[ i ];
-        var appTag = '<a class="vignette" title="' + app.title + '" href="' + app.url + '" ><span class="icon ' + app.title.toLowerCase() + '" title="' + app.title + '" style="background-image: url(\'' + app.iconUrl+"');\"></span></a>";
+        var appTag = "<a class=\"vignette\" title=\"" + app.title + "\" href=\"" + app.url + "\" ><span class=\"icon " + app.title.toLowerCase() + "\" title=\"" + app.title + "\" style=\"background-image: url('" + app.iconUrl + "');\"></span></a>";
         applications.append(appTag);
     }
 
@@ -412,10 +412,10 @@ function updateApplications(configArray){
             case "connexion":
                 tryConnexion("img/connexion.png", configArray);
                 if(refreshTime > 0){ // If the attribute refreshTime exists, we execute the service every refreshTime seconds
-                        $(document).ready(function(){
-                            setInterval(tryConnexion, refreshTime,"img/connexion.png", configArray);
-                        });
-                    }
+                    $(document).ready(function(){
+                        setInterval(tryConnexion, refreshTime, "img/connexion.png", configArray);
+                    });
+                }
                 break;
             default:
                 console.log("Unknown service");

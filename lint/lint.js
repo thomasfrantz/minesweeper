@@ -1,3 +1,4 @@
+/**Erase this line when linting is finished**/
 var glob = require("glob");
 var fs = require("fs");
 
@@ -5,7 +6,7 @@ var fs = require("fs");
 var Eslint = require("eslint").CLIEngine;
 var linter = new Eslint({
     "configFile": "lint/.eslintrc",
-    "fix":        false
+    "fix":        true
 });
 
 // Colouring the command line
@@ -18,23 +19,35 @@ var linkC = cliColor.bold.cyan;
 glob("src/client/*.js", function outputESlint(err, files){
     var i;
     var reports;
+    var report;
+    var linted = "/**Erase this line when linting is finished**/";
 
     if(err){
-        return console.error(err);
+        return console.error(errorC(err));
     }
 
+    // Add the lint file to be lintification
     files.push("lint/lint.js");
     reports = linter.executeOnFiles(files);
 
     for(i = 0; i < reports.results.length; i++){
+        report = reports.results[ i ];
+
+        // Display with colors the number of errors and warnings for each files
         console.log(
-            linkC(reports.results[ i ].filePath) + " contains :\n" +
-            errorC(reports.results[ i ].errorCount + " errors") + "\n" +
-            warningC(reports.results[ i ].warningCount + " warnings") + "\n\n"
+            linkC(report.filePath) + " contains :\n" +
+            errorC(report.errorCount + " errors") + "\n\n"
         );
-        if(reports.results[ 1 ].output){
-            fs.writeFileSync(files[ 1 ], reports.results[ 1 ].output);
+
+        // Fix automatically what can be fixed by the linter
+        // (severity 1 in .eslintrc)
+        if(report.output){
+            fs.writeFileSync(files[ i ], reports.results[ i ].output);
         }
+
+        // Get non fixable errors and add comments at the end of faulty lines
+        // (severity 2 in .eslintrc)
     }
-    //console.log(reports.results[ 1 ]);
+    console.log(warningC("You have to fix those errors before commiting !"));
+    console.log(reports.results[ 1 ]);
 });
