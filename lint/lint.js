@@ -17,15 +17,17 @@ var linkC = cliColor.bold.cyan;
 var rightC = cliColor.bold.green;
 
 // We parse every js files
-glob("src/**/*.js", function outputESlint(err, files){
+glob("src/**/*.js", {"realpath": true}, function outputESlint(err, files){
     var i;
     var reports;
     var report;
     var sortedFiles;
-    var rightLinted;
-    var errorLinted;
-    var notLinted;
     var failCounter = 0;
+    var initSortedFiles = {
+        "notLinted":   [],
+        "rightLinted": [],
+        "errorLinted": []
+    };
 
     if(err){
         return console.error(errorC(err));
@@ -34,68 +36,62 @@ glob("src/**/*.js", function outputESlint(err, files){
     // Add the lint file to the lintification
     files.push("lint/lint.js");
 
-    sortedFiles = files.reduce(sortLintedFiles, null);
-    rightLinted = sortedFiles.rightLinted;
-    errorLinted = sortedFiles.errorLinted;
-    notLinted = sortedFiles.notLinted;
-    console.log(sortedFiles);
+    sortedFiles = files.reduce(sortLintedFiles, initSortedFiles);
 
-    for(i = 0; i < rightLinted.length; i++){
-        console.log(
-            linkC(rightLinted[ i ]) + rightC(" passed the linter :)\n\n")
-        );
-    }
+    //console.log(sortedFiles);
 
-    for(i = 0; i < errorLinted.length; i++){
-        failCounter++;
-        console.log(
-            linkC(errorLinted[ i ].filePath) +
-            errorC(" contains " + errorLinted[ i ].errorCount + " errors") +
-            "\n\n"
-        );
-    }
-
-    reports = linter.executeOnFiles(notLinted);
+    reports = linter.executeOnFiles(sortedFiles.notLinted).results;
 
     // Display with colors
     // the number of errors for each files
     // or a nice message if lint succeeded
-    for(i = 0; i < reports.results.length; i++){
-        report = reports.results[ i ];
+    for(i = 0; i < reports.length; i++){
+        report = reports[ i ];
 
         // Fix automatically what can be fixed by the linter
         // (severity 1 in .eslintrc)
         if(report.output){
-            console.log(i);
-            console.log(report.output);
-            fs.writeFileSync(notLinted[ i ], reports.results[ i ].output);
+            fs.writeFileSync(
+                sortedFiles.notLinted[ i ],
+                reports[ i ].output
+            );
         }
 
         // Get non fixable errors
         // and add comments at the end of faulty lines
         // (severity 2 in .eslintrc)
         if(report.errorCount){
-            failCounter++;
-            console.log(
-                linkC(report.filePath) +
-                errorC(" contains " + report.errorCount + " errors") +
-                "\n\n"
+            sortedFiles.errorLinted.push(
+                {
+                    "filePath":   report.filePath,
+                    "errorCount": report.errorCount
+                }
             );
+
         // If there is no errors
         // display nice message
         }else{
-            console.log(
-                linkC(report.filePath) + rightC(" passed the linter :)\n\n")
-            );
+            sortedFiles.rightLinted.push(report.filePath);
         }
     }
 
+    sortedFiles.rightLinted.forEach(printSuccess);
+    sortedFiles.errorLinted.forEach(function anon(file){
+        failCounter++;
+        printError(file);
+    });
+    console.log(reports[ 1 ]);
+
     // Sum up the errors
-    console.log(warningC(
-            "You have to fix the " +
-            failCounter +
-            " failing files before commiting !"
-    ));
+    if(failCounter){
+        console.log(warningC(
+                "You have to fix the " +
+                failCounter +
+                " failing files before commiting !"
+        ));
+    }else{
+        console.log(rightC("You can commit your changes !"));
+    }
 });
 
 /**
@@ -137,33 +133,47 @@ function getTime(date){
  * @return {Object} filesHalfSorted : Updated lists containing the sorted file names
  */
 function sortLintedFiles(filesHalfSorted, file){
-    var fileMoreSorted = filesHalfSorted;
+    var filesMoreSorted = filesHalfSorted;
     var firstLine = getLine(file, 1);
     var lastLinted = firstLine.split("<lastLinted>")[ 1 ] || "";
     var errorCount = firstLine.split("<errorCount>")[ 1 ] || "";
     var timeModified = fs.statSync(file).mtime;
     var lastModified = getTime(timeModified);
 
-    // Initialize filesHalfSorted
-    if(filesHalfSorted === null){
-        fileMoreSorted = {
-            "notLinted":   [],
-            "rightLinted": [],
-            "errorLinted": []
-        };
-    }
-
     // Put the file in the right list
     if(lastLinted === lastModified && errorCount){
-        fileMoreSorted.errorLinted.push({
+        filesMoreSorted.errorLinted.push({
             "filePath":   file,
             "errorCount": errorCount
         });
     }else if(lastLinted === lastModified){
-        fileMoreSorted.rightLinted.push(file);
+        filesMoreSorted.rightLinted.push(file);
     }else{
-        fileMoreSorted.notLinted.push(file);
+        filesMoreSorted.notLinted.push(file);
     }
 
-    return fileMoreSorted;
+    return filesMoreSorted;
+}
+
+/**
+ * It output an error message pointing to the faulty file and the number of errors found in it
+ * @param  {Object} file : Contains the path to the failing file (link) and the number of errors in the failing file (errorCount)
+ */
+function printError(file){
+    console.log(
+        linkC(file.filePath) +
+        errorC(" contains " + file.errorCount + " errors") +
+        "\n\n"
+    );
+}
+
+/**
+ * It output a message pointing to the successful file
+ * @param  {String} link       name of the failing file
+ */
+function printSuccess(link){
+    console.log(
+        linkC(link) +
+        rightC(" passed the linter :)\n\n")
+    );
 }
