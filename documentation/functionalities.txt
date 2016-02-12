@@ -18,10 +18,12 @@
 - Share games with best timer...
 - Share games with best timer as a decreasing counter (challenge mode)
 - Keyboard shortcuts
+- Sprites off by default, with a checkbox to put them on
 
 3. Cosmetic functionalities
 - On right-click, put a flag on a case if it doesn't have one, remove it if there is one
 - Beautiful cases
-- petite animation pour Game Over
+- small animation for Game Over
 - Effect when you click on cases
 - Beautiful real time timer
+- Change the sprites set (classic, pokemon, ...)
