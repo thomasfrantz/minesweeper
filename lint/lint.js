@@ -1,5 +1,5 @@
 /**<linter>
-<lastLinted>12/02/2016 17:15<lastLinted>
+<lastLinted>12/02/2016 18:14<lastLinted>
 <errorCount>0<errorCount>
 <linter>**/
 
@@ -90,6 +90,7 @@ glob("src/**/*.js", {"realpath": true}, function outputESlint(err, files){
         fs.writeFileSync(fileName, textFile);
     }
 
+
     sortedFiles.rightLinted.forEach(printSuccess);
     sortedFiles.errorLinted.forEach(function anon(file){
         failCounter++;
@@ -128,6 +129,7 @@ function getTag(textFile){
  */
 function setTag(textFile, nbrErrors, errors){
     var errTag;
+    var lineDiff = getLineDiff(textFile, nbrErrors);
     var date = getFormatedTime(new Date());
     var tag =
         "/**<linter>" + eol +
@@ -139,7 +141,7 @@ function setTag(textFile, nbrErrors, errors){
         errors.forEach(function anon(error){
             errTag +=
             tab + error.ruleId +
-            " line " + error.line +
+            " line " + (error.line + lineDiff) +
             " : " + error.message + eol;
         });
         errTag += "<errors>" + eol;
@@ -160,31 +162,18 @@ function removeTag(textFile){
 }
 
 /**
- * getFormatedTime returns a date to the desired format : dd/mm/yyyy:hh:mm
- * @param  {Date}   date : date non formatée
- * @return {String} formatedDate : date formatée
+ * [getLineDiff description]
+ * @param  {[type]} textFile  [description]
+ * @param  {[type]} nbrErrors [description]
+ * @return {[type]}           [description]
  */
-function getFormatedTime(date){
-    var round = 30;
-    var roundedSec = Math.floor(date.getSeconds() / round);
-    var formatedTime = setZero(date.getDate()) + "/" +
-        setZero(date.getMonth() + 1) + "/" +
-        date.getFullYear() + " " +
-        setZero(date.getHours()) + ":" +
-        setZero(date.getMinutes() + roundedSec);
+function getLineDiff(textFile, nbrErrors){
+    var lineNbr = 5;
+    var errMarkup = 2;
+    var oldLineNbr = getTag(textFile).split(eol).length;
+    var newLineNbr = nbrErrors ? lineNbr + nbrErrors + errMarkup : lineNbr;
 
-    return formatedTime;
-}
-
-/**
- * setZero puts a 0 in front of a time smaller than 10, to add readability
- * @param {String}  time : Time that maybe needs to be more readable
- * @return {String} readableTime : Time that is readable for sure
- */
-function setZero(time){
-    var ten = 10;
-
-    return time < ten ? "0" + time : time;
+    return newLineNbr - oldLineNbr;
 }
 
 /**
@@ -203,7 +192,7 @@ function sortLintedFiles(filesHalfSorted, fileName){
     var lastModified = getFormatedTime(timeModified);
 
     // Put the file in the right list
-    if(lastLinted === lastModified && errorCount){
+    if(lastLinted === lastModified && errorCount > 0){
         filesMoreSorted.errorLinted.push({
             "filePath":   fileName,
             "errorCount": errorCount
@@ -239,4 +228,32 @@ function printSuccess(fileName){
         rightC(" passed the linter :)") +
         eol + eol
     );
+}
+
+/**
+ * getFormatedTime returns a date to the desired format : dd/mm/yyyy:hh:mm
+ * @param  {Date}   date : date non formatée
+ * @return {String} formatedDate : date formatée
+ */
+function getFormatedTime(date){
+    var round = 30;
+    var roundedSec = Math.floor(date.getSeconds() / round);
+    var formatedTime = setZero(date.getDate()) + "/" +
+        setZero(date.getMonth() + 1) + "/" +
+        date.getFullYear() + " " +
+        setZero(date.getHours()) + ":" +
+        setZero(date.getMinutes() + roundedSec);
+
+    return formatedTime;
+}
+
+/**
+ * setZero puts a 0 in front of a time smaller than 10, to add readability
+ * @param {String}  time : Time that maybe needs to be more readable
+ * @return {String} readableTime : Time that is readable for sure
+ */
+function setZero(time){
+    var ten = 10;
+
+    return time < ten ? "0" + time : time;
 }
