@@ -1,293 +1,293 @@
 /**<linter>
-<lastLinted>12/02/2016 18:14<lastLinted>
+<lastLinted>22/02/2016 18:00<lastLinted>
 <errorCount>286<errorCount>
 <errors>
-    func-names line 299 : Missing function expression name.
-    newline-after-var line 300 : Expected blank line after variable declarations.
-    valid-jsdoc line 310 : Missing JSDoc for parameter 'configArray'.
-    no-unused-vars line 314 : "startNsWidget" is defined but never used
-    no-unused-vars line 316 : "services" is defined but never used
-    max-len line 327 : Line 328 exceeds the maximum line length of 80.
-    vars-on-top line 327 : All "var" declarations must be at the top of the function scope.
-    max-len line 328 : Line 329 exceeds the maximum line length of 80.
+    func-names line 300 : Missing function expression name.
+    newline-after-var line 301 : Expected blank line after variable declarations.
+    valid-jsdoc line 311 : Missing JSDoc for parameter 'configArray'.
+    no-unused-vars line 315 : "startNsWidget" is defined but never used
+    no-unused-vars line 317 : "services" is defined but never used
+    max-len line 328 : Line 328 exceeds the maximum line length of 80.
     vars-on-top line 328 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 329 : Expected blank line after variable declarations.
+    max-len line 329 : Line 329 exceeds the maximum line length of 80.
     vars-on-top line 329 : All "var" declarations must be at the top of the function scope.
-    id-length line 329 : Identifier name 'applicationsWidget' is too long. (> 15)
-    no-undef line 329 : "$" is not defined.
-    no-undef line 332 : "$" is not defined.
-    vars-on-top line 333 : All "var" declarations must be at the top of the function scope.
-    no-unused-vars line 333 : "nbrApps" is defined but never used
-    no-undef line 337 : "$" is not defined.
-    func-names line 337 : Missing function expression name.
-    no-undef line 340 : "$" is not defined.
-    func-names line 340 : Missing function expression name.
-    no-shadow line 340 : "event" is already declared in the upper scope.
-    max-len line 341 : Line 342 exceeds the maximum line length of 80.
+    newline-after-var line 330 : Expected blank line after variable declarations.
+    vars-on-top line 330 : All "var" declarations must be at the top of the function scope.
+    id-length line 330 : Identifier name 'applicationsWidget' is too long. (> 15)
+    no-undef line 330 : "$" is not defined.
+    no-undef line 333 : "$" is not defined.
+    vars-on-top line 334 : All "var" declarations must be at the top of the function scope.
+    no-unused-vars line 334 : "nbrApps" is defined but never used
+    no-undef line 338 : "$" is not defined.
+    func-names line 338 : Missing function expression name.
     no-undef line 341 : "$" is not defined.
-    no-undef line 341 : "$" is not defined.
-    no-undef line 341 : "$" is not defined.
-    vars-on-top line 347 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 347 : Expected blank line after variable declarations.
-    no-magic-numbers line 348 : No magic number: 183
-    no-magic-numbers line 348 : No magic number: 26
-    no-inline-comments line 348 : Unexpected comment inline with code.
-    lines-around-comment line 359 : Expected line before comment.
-    valid-jsdoc line 405 : Missing JSDoc for parameter 'authName'.
-    valid-jsdoc line 405 : Missing JSDoc for parameter 'authServices'.
-    newline-after-var line 412 : Expected blank line after variable declarations.
-    no-empty line 413 : Empty block statement.
-    curly line 415 : Expected { after 'if' condition.
-    curly line 417 : Expected { after 'if' condition.
-    curly line 419 : Expected { after 'if' condition.
-    func-names line 422 : Missing function expression name.
-    no-unused-vars line 422 : "data" is defined but never used
-    func-names line 425 : Missing function expression name.
-    no-inner-declarations line 426 : Move variable declaration to function body root.
-    vars-on-top line 426 : All "var" declarations must be at the top of the function scope.
+    func-names line 341 : Missing function expression name.
+    no-shadow line 341 : "event" is already declared in the upper scope.
+    max-len line 342 : Line 342 exceeds the maximum line length of 80.
+    no-undef line 342 : "$" is not defined.
+    no-undef line 342 : "$" is not defined.
+    no-undef line 342 : "$" is not defined.
+    vars-on-top line 348 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 348 : Expected blank line after variable declarations.
+    no-magic-numbers line 349 : No magic number: 183
+    no-magic-numbers line 349 : No magic number: 26
+    no-inline-comments line 349 : Unexpected comment inline with code.
+    lines-around-comment line 360 : Expected line before comment.
+    valid-jsdoc line 406 : Missing JSDoc for parameter 'authName'.
+    valid-jsdoc line 406 : Missing JSDoc for parameter 'authServices'.
+    newline-after-var line 413 : Expected blank line after variable declarations.
+    no-empty line 414 : Empty block statement.
+    curly line 416 : Expected { after 'if' condition.
+    curly line 418 : Expected { after 'if' condition.
+    curly line 420 : Expected { after 'if' condition.
+    func-names line 423 : Missing function expression name.
+    no-unused-vars line 423 : "data" is defined but never used
+    func-names line 426 : Missing function expression name.
     no-inner-declarations line 427 : Move variable declaration to function body root.
     vars-on-top line 427 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 427 : Expected blank line after variable declarations.
-    no-inline-comments line 428 : Unexpected comment inline with code.
-    no-inner-declarations line 430 : Move variable declaration to function body root.
-    vars-on-top line 430 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 430 : Expected blank line after variable declarations.
-    no-magic-numbers line 430 : No magic number: 300000
-    no-inline-comments line 432 : Unexpected comment inline with code.
-    no-undef line 433 : "$" is not defined.
-    func-names line 433 : Missing function expression name.
-    no-loop-func line 433 : Don't make functions within a loop
-    no-implied-eval line 434 : Implied eval. Consider passing a function instead of a string.
-    curly line 439 : Expected { after 'if' condition.
-    curly line 441 : Expected { after 'if' condition.
-    padded-blocks line 448 : Block must not be padded by blank lines.
-    max-len line 460 : Line 461 exceeds the maximum line length of 80.
-    newline-after-var line 460 : Expected blank line after variable declarations.
-    no-undef line 461 : "$" is not defined.
-    func-names line 463 : Missing function expression name.
-    newline-after-var line 464 : Expected blank line after variable declarations.
-    no-inner-declarations line 466 : Move variable declaration to function body root.
-    vars-on-top line 466 : All "var" declarations must be at the top of the function scope.
-    no-undef line 466 : "$" is not defined.
-    max-len line 467 : Line 468 exceeds the maximum line length of 80.
-    vars-on-top line 467 : All "var" declarations must be at the top of the function scope.
+    no-inner-declarations line 428 : Move variable declaration to function body root.
+    vars-on-top line 428 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 428 : Expected blank line after variable declarations.
+    no-inline-comments line 429 : Unexpected comment inline with code.
+    no-inner-declarations line 431 : Move variable declaration to function body root.
+    vars-on-top line 431 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 431 : Expected blank line after variable declarations.
+    no-magic-numbers line 431 : No magic number: 300000
+    no-inline-comments line 433 : Unexpected comment inline with code.
+    no-undef line 434 : "$" is not defined.
+    func-names line 434 : Missing function expression name.
+    no-loop-func line 434 : Don't make functions within a loop
+    no-implied-eval line 435 : Implied eval. Consider passing a function instead of a string.
+    curly line 440 : Expected { after 'if' condition.
+    curly line 442 : Expected { after 'if' condition.
+    padded-blocks line 449 : Block must not be padded by blank lines.
+    max-len line 461 : Line 461 exceeds the maximum line length of 80.
+    newline-after-var line 461 : Expected blank line after variable declarations.
+    no-undef line 462 : "$" is not defined.
+    func-names line 464 : Missing function expression name.
+    newline-after-var line 465 : Expected blank line after variable declarations.
     no-inner-declarations line 467 : Move variable declaration to function body root.
-    no-extra-parens line 467 : Gratuitous parentheses around expression.
-    no-magic-numbers line 467 : No magic number: 99
-    max-len line 468 : Line 469 exceeds the maximum line length of 80.
-    no-inner-declarations line 468 : Move variable declaration to function body root.
+    vars-on-top line 467 : All "var" declarations must be at the top of the function scope.
+    no-undef line 467 : "$" is not defined.
+    max-len line 468 : Line 468 exceeds the maximum line length of 80.
     vars-on-top line 468 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 468 : Expected blank line after variable declarations.
-    max-len line 469 : Line 470 exceeds the maximum line length of 80.
-    no-inner-declarations line 470 : Move variable declaration to function body root.
-    vars-on-top line 470 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 470 : Expected blank line after variable declarations.
-    no-undef line 470 : "$" is not defined.
-    curly line 471 : Expected { after 'if' condition.
-    curly line 473 : Expected { after 'else'.
-    func-names line 479 : Missing function expression name.
-    no-undef line 485 : "$" is not defined.
-    no-undef line 487 : "urlToAppointment" is not defined.
+    no-inner-declarations line 468 : Move variable declaration to function body root.
+    no-extra-parens line 468 : Gratuitous parentheses around expression.
+    no-magic-numbers line 468 : No magic number: 99
+    max-len line 469 : Line 469 exceeds the maximum line length of 80.
+    no-inner-declarations line 469 : Move variable declaration to function body root.
+    vars-on-top line 469 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 469 : Expected blank line after variable declarations.
+    max-len line 470 : Line 470 exceeds the maximum line length of 80.
+    no-inner-declarations line 471 : Move variable declaration to function body root.
+    vars-on-top line 471 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 471 : Expected blank line after variable declarations.
+    no-undef line 471 : "$" is not defined.
+    curly line 472 : Expected { after 'if' condition.
+    curly line 474 : Expected { after 'else'.
+    func-names line 480 : Missing function expression name.
+    no-undef line 486 : "$" is not defined.
     no-undef line 488 : "urlToAppointment" is not defined.
-    func-names line 489 : Missing function expression name.
-    newline-after-var line 490 : Expected blank line after variable declarations.
-    id-length line 490 : Identifier name 'soonAppointments' is too long. (> 15)
-    no-inner-declarations line 492 : Move variable declaration to function body root.
-    vars-on-top line 492 : All "var" declarations must be at the top of the function scope.
-    no-undef line 492 : "$" is not defined.
-    max-len line 493 : Line 494 exceeds the maximum line length of 80.
-    vars-on-top line 493 : All "var" declarations must be at the top of the function scope.
+    no-undef line 489 : "urlToAppointment" is not defined.
+    func-names line 490 : Missing function expression name.
+    newline-after-var line 491 : Expected blank line after variable declarations.
+    id-length line 491 : Identifier name 'soonAppointments' is too long. (> 15)
     no-inner-declarations line 493 : Move variable declaration to function body root.
-    no-extra-parens line 493 : Gratuitous parentheses around expression.
-    id-length line 493 : Identifier name 'soonAppointments' is too long. (> 15)
-    no-magic-numbers line 493 : No magic number: 99
-    no-inner-declarations line 494 : Move variable declaration to function body root.
+    vars-on-top line 493 : All "var" declarations must be at the top of the function scope.
+    no-undef line 493 : "$" is not defined.
+    max-len line 494 : Line 494 exceeds the maximum line length of 80.
     vars-on-top line 494 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 494 : Expected blank line after variable declarations.
-    max-len line 495 : Line 496 exceeds the maximum line length of 80.
-    no-inner-declarations line 496 : Move variable declaration to function body root.
-    vars-on-top line 496 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 496 : Expected blank line after variable declarations.
-    no-undef line 496 : "$" is not defined.
-    curly line 497 : Expected { after 'if' condition.
-    curly line 499 : Expected { after 'else'.
-    func-names line 505 : Missing function expression name.
-    valid-jsdoc line 512 : Missing JSDoc for parameter 'target'.
-    valid-jsdoc line 512 : Missing JSDoc for parameter 'service'.
-    newline-after-var line 519 : Expected blank line after variable declarations.
-    curly line 520 : Expected { after 'if' condition.
-    curly line 522 : Expected { after 'if' condition.
-    newline-after-var line 524 : Expected blank line after variable declarations.
-    vars-on-top line 524 : All "var" declarations must be at the top of the function scope.
-    no-redeclare line 524 : "service" is already defined
-    func-names line 526 : Missing function expression name.
-    no-unused-vars line 526 : "data" is defined but never used
-    no-undef line 527 : "applications" is not defined.
-    no-undef line 527 : "$" is not defined.
-    vars-on-top line 528 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 529 : Expected blank line after variable declarations.
+    no-inner-declarations line 494 : Move variable declaration to function body root.
+    no-extra-parens line 494 : Gratuitous parentheses around expression.
+    id-length line 494 : Identifier name 'soonAppointments' is too long. (> 15)
+    no-magic-numbers line 494 : No magic number: 99
+    no-inner-declarations line 495 : Move variable declaration to function body root.
+    vars-on-top line 495 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 495 : Expected blank line after variable declarations.
+    max-len line 496 : Line 496 exceeds the maximum line length of 80.
+    no-inner-declarations line 497 : Move variable declaration to function body root.
+    vars-on-top line 497 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 497 : Expected blank line after variable declarations.
+    no-undef line 497 : "$" is not defined.
+    curly line 498 : Expected { after 'if' condition.
+    curly line 500 : Expected { after 'else'.
+    func-names line 506 : Missing function expression name.
+    valid-jsdoc line 513 : Missing JSDoc for parameter 'target'.
+    valid-jsdoc line 513 : Missing JSDoc for parameter 'service'.
+    newline-after-var line 520 : Expected blank line after variable declarations.
+    curly line 521 : Expected { after 'if' condition.
+    curly line 523 : Expected { after 'if' condition.
+    newline-after-var line 525 : Expected blank line after variable declarations.
+    vars-on-top line 525 : All "var" declarations must be at the top of the function scope.
+    no-redeclare line 525 : "service" is already defined
+    func-names line 527 : Missing function expression name.
+    no-unused-vars line 527 : "data" is defined but never used
+    no-undef line 528 : "applications" is not defined.
+    no-undef line 528 : "$" is not defined.
     vars-on-top line 529 : All "var" declarations must be at the top of the function scope.
-    no-inner-declarations line 530 : Move variable declaration to function body root.
+    newline-after-var line 530 : Expected blank line after variable declarations.
     vars-on-top line 530 : All "var" declarations must be at the top of the function scope.
-    max-len line 532 : Line 533 exceeds the maximum line length of 80.
-    no-inner-declarations line 532 : Move variable declaration to function body root.
-    vars-on-top line 532 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 532 : Expected blank line after variable declarations.
-    curly line 533 : Expected { after 'if' condition.
-    no-undef line 534 : "applications" is not defined.
-    curly line 535 : Expected { after 'else'.
-    no-undef line 536 : "applications" is not defined.
-    func-names line 541 : Missing function expression name.
-    valid-jsdoc line 547 : Missing JSDoc for parameter 'configArray'.
-    valid-jsdoc line 547 : Missing JSDoc for parameter 'iconUrl'.
-    newline-after-var line 554 : Expected blank line after variable declarations.
-    func-names line 556 : Missing function expression name.
-    no-unused-vars line 556 : "data" is defined but never used
-    no-undef line 557 : "$" is not defined.
-    no-inner-declarations line 558 : Move variable declaration to function body root.
-    vars-on-top line 558 : All "var" declarations must be at the top of the function scope.
+    no-inner-declarations line 531 : Move variable declaration to function body root.
+    vars-on-top line 531 : All "var" declarations must be at the top of the function scope.
+    max-len line 533 : Line 533 exceeds the maximum line length of 80.
+    no-inner-declarations line 533 : Move variable declaration to function body root.
+    vars-on-top line 533 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 533 : Expected blank line after variable declarations.
+    curly line 534 : Expected { after 'if' condition.
+    no-undef line 535 : "applications" is not defined.
+    curly line 536 : Expected { after 'else'.
+    no-undef line 537 : "applications" is not defined.
+    func-names line 542 : Missing function expression name.
+    valid-jsdoc line 548 : Missing JSDoc for parameter 'configArray'.
+    valid-jsdoc line 548 : Missing JSDoc for parameter 'iconUrl'.
+    newline-after-var line 555 : Expected blank line after variable declarations.
+    func-names line 557 : Missing function expression name.
+    no-unused-vars line 557 : "data" is defined but never used
     no-undef line 558 : "$" is not defined.
-    max-len line 559 : Line 560 exceeds the maximum line length of 80.
-    vars-on-top line 559 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 559 : Expected blank line after variable declarations.
     no-inner-declarations line 559 : Move variable declaration to function body root.
-    func-names line 564 : Missing function expression name.
-    newline-after-var line 565 : Expected blank line after variable declarations.
-    no-undef line 565 : "$" is not defined.
-    padded-blocks line 574 : Block must not be padded by blank lines.
-    require-jsdoc line 580 : Missing JSDoc comment.
-    no-undef line 583 : "$" is not defined.
-    quote-props line 584 : Unquoted property `type` found.
-    key-spacing line 584 : Missing space before value for key "type".
-    quote-props line 585 : Unquoted property `url` found.
-    key-spacing line 585 : Missing space before value for key "url".
-    quote-props line 586 : Unquoted property `contentType` found.
-    quote-props line 587 : Unquoted property `crossDomain` found.
-    quote-props line 588 : Unquoted property `xhrFields` found.
-    key-spacing line 588 : Missing space before value for key "xhrFields".
-    quote-props line 589 : Unquoted property `withCredentials` found.
-    quote-props line 591 : Unquoted property `headers` found.
-    quote-props line 596 : Unquoted property `success` found.
-    func-names line 596 : Missing function expression name.
-    quote-props line 601 : Unquoted property `error` found.
-    func-names line 601 : Missing function expression name.
-    require-jsdoc line 609 : Missing JSDoc comment.
-    no-redeclare line 610 : "maxApps" is already defined
-    no-magic-numbers line 610 : No magic number: 9
-    id-length line 611 : Identifier name 'applicationsWidget' is too long. (> 15)
-    no-undef line 611 : "$" is not defined.
+    vars-on-top line 559 : All "var" declarations must be at the top of the function scope.
+    no-undef line 559 : "$" is not defined.
+    max-len line 560 : Line 560 exceeds the maximum line length of 80.
+    vars-on-top line 560 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 560 : Expected blank line after variable declarations.
+    no-inner-declarations line 560 : Move variable declaration to function body root.
+    func-names line 565 : Missing function expression name.
+    newline-after-var line 566 : Expected blank line after variable declarations.
+    no-undef line 566 : "$" is not defined.
+    padded-blocks line 575 : Block must not be padded by blank lines.
+    require-jsdoc line 581 : Missing JSDoc comment.
+    no-undef line 584 : "$" is not defined.
+    quote-props line 585 : Unquoted property `type` found.
+    key-spacing line 585 : Missing space before value for key "type".
+    quote-props line 586 : Unquoted property `url` found.
+    key-spacing line 586 : Missing space before value for key "url".
+    quote-props line 587 : Unquoted property `contentType` found.
+    quote-props line 588 : Unquoted property `crossDomain` found.
+    quote-props line 589 : Unquoted property `xhrFields` found.
+    key-spacing line 589 : Missing space before value for key "xhrFields".
+    quote-props line 590 : Unquoted property `withCredentials` found.
+    quote-props line 592 : Unquoted property `headers` found.
+    quote-props line 597 : Unquoted property `success` found.
+    func-names line 597 : Missing function expression name.
+    quote-props line 602 : Unquoted property `error` found.
+    func-names line 602 : Missing function expression name.
+    require-jsdoc line 610 : Missing JSDoc comment.
+    no-redeclare line 611 : "maxApps" is already defined
+    no-magic-numbers line 611 : No magic number: 9
+    id-length line 612 : Identifier name 'applicationsWidget' is too long. (> 15)
     no-undef line 612 : "$" is not defined.
     no-undef line 613 : "$" is not defined.
-    max-len line 614 : Line 615 exceeds the maximum line length of 80.
-    newline-after-var line 614 : Expected blank line after variable declarations.
-    no-extra-parens line 614 : Gratuitous parentheses around expression.
-    no-magic-numbers line 614 : No magic number: 70
-    no-magic-numbers line 614 : No magic number: 3
-    no-magic-numbers line 614 : No magic number: 6
-    no-magic-numbers line 614 : No magic number: 70
-    no-magic-numbers line 614 : No magic number: 3
-    no-magic-numbers line 614 : No magic number: 6
-    no-inline-comments line 614 : Unexpected comment inline with code.
+    no-undef line 614 : "$" is not defined.
+    max-len line 615 : Line 615 exceeds the maximum line length of 80.
+    newline-after-var line 615 : Expected blank line after variable declarations.
+    no-extra-parens line 615 : Gratuitous parentheses around expression.
+    no-magic-numbers line 615 : No magic number: 70
+    no-magic-numbers line 615 : No magic number: 3
     no-magic-numbers line 615 : No magic number: 6
-    lines-around-comment line 619 : Expected line before comment.
-    no-inner-declarations line 623 : Move variable declaration to function body root.
-    vars-on-top line 623 : All "var" declarations must be at the top of the function scope.
-    max-len line 624 : Line 625 exceeds the maximum line length of 80.
-    vars-on-top line 624 : All "var" declarations must be at the top of the function scope.
+    no-magic-numbers line 615 : No magic number: 70
+    no-magic-numbers line 615 : No magic number: 3
+    no-magic-numbers line 615 : No magic number: 6
+    no-inline-comments line 615 : Unexpected comment inline with code.
+    no-magic-numbers line 616 : No magic number: 6
+    lines-around-comment line 620 : Expected line before comment.
     no-inner-declarations line 624 : Move variable declaration to function body root.
-    newline-after-var line 624 : Expected blank line after variable declarations.
-    no-undef line 626 : "$" is not defined.
-    no-magic-numbers line 627 : No magic number: 10
-    no-inline-comments line 627 : Unexpected comment inline with code.
-    no-undef line 630 : "appButton" is not defined.
-    no-undef line 630 : "$" is not defined.
-    func-names line 630 : Missing function expression name.
-    no-undef line 633 : "$" is not defined.
-    func-names line 633 : Missing function expression name.
-    no-shadow line 633 : "event" is already declared in the upper scope.
-    max-len line 634 : Line 635 exceeds the maximum line length of 80.
+    vars-on-top line 624 : All "var" declarations must be at the top of the function scope.
+    max-len line 625 : Line 625 exceeds the maximum line length of 80.
+    vars-on-top line 625 : All "var" declarations must be at the top of the function scope.
+    no-inner-declarations line 625 : Move variable declaration to function body root.
+    newline-after-var line 625 : Expected blank line after variable declarations.
+    no-undef line 627 : "$" is not defined.
+    no-magic-numbers line 628 : No magic number: 10
+    no-inline-comments line 628 : Unexpected comment inline with code.
+    no-undef line 631 : "appButton" is not defined.
+    no-undef line 631 : "$" is not defined.
+    func-names line 631 : Missing function expression name.
     no-undef line 634 : "$" is not defined.
-    no-undef line 634 : "$" is not defined.
-    no-undef line 634 : "appButton" is not defined.
-    no-undef line 634 : "$" is not defined.
-    no-inner-declarations line 638 : Move variable declaration to function body root.
-    vars-on-top line 638 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 638 : Expected blank line after variable declarations.
-    no-undef line 638 : "appButton" is not defined.
-    no-magic-numbers line 639 : No magic number: 183
-    no-magic-numbers line 639 : No magic number: 26
-    no-inline-comments line 639 : Unexpected comment inline with code.
-    func-names line 645 : Missing function expression name.
-    newline-after-var line 646 : Expected blank line after variable declarations.
-    max-len line 649 : Line 650 exceeds the maximum line length of 80.
-    no-magic-numbers line 649 : No magic number: 17
-    no-inline-comments line 649 : Unexpected comment inline with code.
-    max-len line 657 : Line 658 exceeds the maximum line length of 80.
-    no-magic-numbers line 657 : No magic number: 17
-    no-inline-comments line 657 : Unexpected comment inline with code.
-    padded-blocks line 665 : Block must not be padded by blank lines.
-    require-jsdoc line 668 : Missing JSDoc comment.
-    id-length line 668 : Identifier name 'updateApplications' is too long. (> 15)
-    no-undef line 671 : "$" is not defined.
-    no-undef line 675 : "$" is not defined.
-    no-inner-declarations line 678 : Move variable declaration to function body root.
-    vars-on-top line 678 : All "var" declarations must be at the top of the function scope.
-    block-scoped-var line 678 : "i" used outside of binding context.
-    block-scoped-var line 678 : "i" used outside of binding context.
-    block-scoped-var line 678 : "i" used outside of binding context.
+    func-names line 634 : Missing function expression name.
+    no-shadow line 634 : "event" is already declared in the upper scope.
+    max-len line 635 : Line 635 exceeds the maximum line length of 80.
+    no-undef line 635 : "$" is not defined.
+    no-undef line 635 : "$" is not defined.
+    no-undef line 635 : "appButton" is not defined.
+    no-undef line 635 : "$" is not defined.
+    no-inner-declarations line 639 : Move variable declaration to function body root.
+    vars-on-top line 639 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 639 : Expected blank line after variable declarations.
+    no-undef line 639 : "appButton" is not defined.
+    no-magic-numbers line 640 : No magic number: 183
+    no-magic-numbers line 640 : No magic number: 26
+    no-inline-comments line 640 : Unexpected comment inline with code.
+    func-names line 646 : Missing function expression name.
+    newline-after-var line 647 : Expected blank line after variable declarations.
+    max-len line 650 : Line 650 exceeds the maximum line length of 80.
+    no-magic-numbers line 650 : No magic number: 17
+    no-inline-comments line 650 : Unexpected comment inline with code.
+    max-len line 658 : Line 658 exceeds the maximum line length of 80.
+    no-magic-numbers line 658 : No magic number: 17
+    no-inline-comments line 658 : Unexpected comment inline with code.
+    padded-blocks line 666 : Block must not be padded by blank lines.
+    require-jsdoc line 669 : Missing JSDoc comment.
+    id-length line 669 : Identifier name 'updateApplications' is too long. (> 15)
+    no-undef line 672 : "$" is not defined.
+    no-undef line 676 : "$" is not defined.
     no-inner-declarations line 679 : Move variable declaration to function body root.
     vars-on-top line 679 : All "var" declarations must be at the top of the function scope.
     block-scoped-var line 679 : "i" used outside of binding context.
-    max-len line 680 : Line 681 exceeds the maximum line length of 80.
+    block-scoped-var line 679 : "i" used outside of binding context.
+    block-scoped-var line 679 : "i" used outside of binding context.
     no-inner-declarations line 680 : Move variable declaration to function body root.
     vars-on-top line 680 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 680 : Expected blank line after variable declarations.
-    vars-on-top line 686 : All "var" declarations must be at the top of the function scope.
+    block-scoped-var line 680 : "i" used outside of binding context.
+    max-len line 681 : Line 681 exceeds the maximum line length of 80.
+    no-inner-declarations line 681 : Move variable declaration to function body root.
+    vars-on-top line 681 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 681 : Expected blank line after variable declarations.
     vars-on-top line 687 : All "var" declarations must be at the top of the function scope.
     vars-on-top line 688 : All "var" declarations must be at the top of the function scope.
-    id-length line 688 : Identifier name 'zcs_personnelServices' is too long. (> 15)
-    camelcase line 688 : Identifier 'zcs_personnelServices' is not in camel case.
     vars-on-top line 689 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 689 : Expected blank line after variable declarations.
-    id-length line 689 : Identifier name 'zcs_etudiantServices' is too long. (> 15)
-    camelcase line 689 : Identifier 'zcs_etudiantServices' is not in camel case.
-    no-inner-declarations line 690 : Move variable declaration to function body root.
+    id-length line 689 : Identifier name 'zcs_personnelServices' is too long. (> 15)
+    camelcase line 689 : Identifier 'zcs_personnelServices' is not in camel case.
     vars-on-top line 690 : All "var" declarations must be at the top of the function scope.
-    block-scoped-var line 690 : "i" used outside of binding context.
-    no-redeclare line 690 : "i" is already defined
-    block-scoped-var line 690 : "i" used outside of binding context.
-    block-scoped-var line 690 : "i" used outside of binding context.
+    newline-after-var line 690 : Expected blank line after variable declarations.
+    id-length line 690 : Identifier name 'zcs_etudiantServices' is too long. (> 15)
+    camelcase line 690 : Identifier 'zcs_etudiantServices' is not in camel case.
     no-inner-declarations line 691 : Move variable declaration to function body root.
     vars-on-top line 691 : All "var" declarations must be at the top of the function scope.
     block-scoped-var line 691 : "i" used outside of binding context.
-    vars-on-top line 692 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 692 : Expected blank line after variable declarations.
+    no-redeclare line 691 : "i" is already defined
+    block-scoped-var line 691 : "i" used outside of binding context.
+    block-scoped-var line 691 : "i" used outside of binding context.
     no-inner-declarations line 692 : Move variable declaration to function body root.
-    camelcase line 694 : Identifier 'zcs_personnelServices' is not in camel case.
-    camelcase line 696 : Identifier 'zcs_etudiantServices' is not in camel case.
-    no-inner-declarations line 702 : Move variable declaration to function body root.
-    vars-on-top line 702 : All "var" declarations must be at the top of the function scope.
-    newline-after-var line 702 : Expected blank line after variable declarations.
-    no-inline-comments line 703 : Unexpected comment inline with code.
-    no-inline-comments line 706 : Unexpected comment inline with code.
-    no-undef line 707 : "$" is not defined.
-    no-loop-func line 707 : Don't make functions within a loop
-    func-names line 707 : Missing function expression name.
-    max-len line 708 : Line 709 exceeds the maximum line length of 80.
-    curly line 717 : Expected { after 'if' condition.
-    max-len line 718 : Line 719 exceeds the maximum line length of 80.
+    vars-on-top line 692 : All "var" declarations must be at the top of the function scope.
+    block-scoped-var line 692 : "i" used outside of binding context.
+    vars-on-top line 693 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 693 : Expected blank line after variable declarations.
+    no-inner-declarations line 693 : Move variable declaration to function body root.
+    camelcase line 695 : Identifier 'zcs_personnelServices' is not in camel case.
+    camelcase line 697 : Identifier 'zcs_etudiantServices' is not in camel case.
+    no-inner-declarations line 703 : Move variable declaration to function body root.
+    vars-on-top line 703 : All "var" declarations must be at the top of the function scope.
+    newline-after-var line 703 : Expected blank line after variable declarations.
+    no-inline-comments line 704 : Unexpected comment inline with code.
+    no-inline-comments line 707 : Unexpected comment inline with code.
+    no-undef line 708 : "$" is not defined.
+    no-loop-func line 708 : Don't make functions within a loop
+    func-names line 708 : Missing function expression name.
+    max-len line 709 : Line 709 exceeds the maximum line length of 80.
     curly line 718 : Expected { after 'if' condition.
-    camelcase line 718 : Identifier 'zcs_personnelServices' is not in camel case.
-    id-length line 718 : Identifier name 'zcs_personnelServices' is too long. (> 15)
-    max-len line 719 : Line 720 exceeds the maximum line length of 80.
+    max-len line 719 : Line 719 exceeds the maximum line length of 80.
     curly line 719 : Expected { after 'if' condition.
-    camelcase line 719 : Identifier 'zcs_etudiantServices' is not in camel case.
-    id-length line 719 : Identifier name 'zcs_etudiantServices' is too long. (> 15)
+    camelcase line 719 : Identifier 'zcs_personnelServices' is not in camel case.
+    id-length line 719 : Identifier name 'zcs_personnelServices' is too long. (> 15)
+    max-len line 720 : Line 720 exceeds the maximum line length of 80.
     curly line 720 : Expected { after 'if' condition.
-    require-jsdoc line 723 : Missing JSDoc comment.
-    id-length line 723 : Identifier name 'checkOngoingAjax' is too long. (> 15)
-    newline-after-var line 724 : Expected blank line after variable declarations.
-    no-undef line 724 : "$" is not defined.
+    camelcase line 720 : Identifier 'zcs_etudiantServices' is not in camel case.
+    id-length line 720 : Identifier name 'zcs_etudiantServices' is too long. (> 15)
+    curly line 721 : Expected { after 'if' condition.
+    require-jsdoc line 724 : Missing JSDoc comment.
+    id-length line 724 : Identifier name 'checkOngoingAjax' is too long. (> 15)
+    newline-after-var line 725 : Expected blank line after variable declarations.
+    no-undef line 725 : "$" is not defined.
 <errors>
 <linter>**/
 

@@ -4,7 +4,7 @@
   "description": "Classic minesweeper game with HTML, JS and CSS",
   "main": "index.js",
   "scripts": {
-    "lint": "node lint/lint",
+    "lint": "node lint/",
     "test": "node test/test",
     "build": "node build",
     "build:dev": "node build --dev",
@@ -32,11 +32,14 @@
   "homepage": "https://github.com/thomasfrantz/minesweeper#readme",
   "devDependencies": {
     "cli-color": "^1.1.0",
-    "eslint": "^1.10.3",
-    "jasmine": "^2.3.2"
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "^6.0.2",
+    "legacy": "0.0.3"
   },
   "dependencies": {
+    "es6-promisify": "^3.0.0",
     "glob": "^6.0.1",
-    "http-server": "^0.8.5"
+    "http-server": "^0.8.5",
+    "moment": "^2.11.2"
   }
 }

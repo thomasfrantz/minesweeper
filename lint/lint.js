@@ -1,164 +1,146 @@
 /**<linter>
-<lastLinted>12/02/2016 18:14<lastLinted>
+<lastLinted>03/03/2016 11:57<lastLinted>
 <errorCount>0<errorCount>
 <linter>**/
 
-var glob = require("glob");
+var promisify = require("es6-promisify");
+var glob = promisify(require("glob"));
 var fs = require("fs");
+var stat = promisify(fs.stat);
+var read = promisify(fs.readFile);
+var write = promisify(fs.writeFile);
 var eol = require("os").EOL;
-var tab = "    ";
+var tab = "  ";
 var matchTag = /\/\*\*<linter>(.|\n|\r)*<linter>\*\*\/(\n|\r)*/;
 
-// Configuring the linter tool
+//Confi guring the linter tool
 var Eslint = require("eslint").CLIEngine;
 var linter = new Eslint({
-    "configFile": "lint/.eslintrc",
-    "fix":        true
+  configFile: "lint/.eslintrc",
+  fix: true
 });
+var app = "lint.js";
 
-// Colouring the command line
+//Colouring the command line
 var cliColor = require("cli-color");
 var errorC = cliColor.bold.red;
-var warningC = cliColor.bold.yellow;
+//var warningC = cliColor.bold.yellow; NOT USED
 var linkC = cliColor.bold.cyan;
 var rightC = cliColor.bold.green;
 
-// We parse every js files
-glob("src/**/*.js", {"realpath": true}, function outputESlint(err, files){
-    var i;
-    var reports;
-    var report;
-    var sortedFiles;
-    var fileName;
-    var textFile;
+/**
+ * main lints all the files
+ * @return {Promise<failCounter>} : Future number of non-passing files
+ */
+function main() {
+  //We parse every js files is src
+  var filesP = glob("src/**/*.js", { realpath: true });
+
+  var failCounterP = filesP.then((files) => {
+    var sortedFilesP;
+    var forceSorted = {};
     var failCounter = 0;
-    var initSortedFiles = {
-        "notLinted":   [],
-        "rightLinted": [],
-        "errorLinted": []
-    };
 
-    if(err){
-        return console.error(errorC(err));
-    }
-
-    // Add the lint file to the lintification
+    //Add the lint file to the lintification
     files.push("lint/lint.js");
 
-    if(process.argv.indexOf("-f") > 0){
-        sortedFiles = initSortedFiles;
-        sortedFiles.notLinted = files;
-    }else{
-        sortedFiles = files.reduce(sortLintedFiles, initSortedFiles);
+    //If the -f option is used, every files will be linted
+    if (process.argv.indexOf("-f") > 0) {
+      forceSorted.notLinted = files;
+      sortedFilesP = Promise.resolve(forceSorted);
+    } else {
+      sortedFilesP = sortFiles(files);
     }
 
-    reports = linter.executeOnFiles(sortedFiles.notLinted).results;
+    return sortedFilesP.then((sortedFiles) => {
+      var reports = linter.executeOnFiles(sortedFiles.notLinted).results;
+      var lintedFilesP = reports.map((report) => {
+        var fileName = report.filePath;
+        var errorCount = report.errorCount;
+        var textFileP = report.output ? Promise.resolve(report.output) : read(fileName, "utf8");
 
-    // Display with colors
-    // the number of errors for each files
-    // or a nice message if lint succeeded
-    for(i = 0; i < reports.length; i++){
-        report = reports[ i ];
-
-        // Fix automatically what can be fixed by the linter
-        // (severity 1 in .eslintrc)
-        if(report.output){
-            fs.writeFileSync(
-                sortedFiles.notLinted[ i ],
-                report.output
-            );
-        }
-
-        fileName = report.filePath;
-        textFile = fs.readFileSync(fileName, "utf8");
-
-        // Put the name of the file in the right place
-        // And tag the files
-        if(report.errorCount){
+        return textFileP.then((textFile) => {
+          var newTextFile = "";
+          if (errorCount) {
             sortedFiles.errorLinted.push(
-                {
-                    "filePath":   fileName,
-                    "errorCount": report.errorCount
-                }
-            );
-            textFile = setTag(textFile, report.errorCount, report.messages);
-        }else{
+              {
+                filePath: fileName,
+                errorCount: errorCount
+              }
+              );
+            newTextFile = setTag(textFile, errorCount, report.messages);
+          } else {
             sortedFiles.rightLinted.push(fileName);
-            textFile = setTag(textFile, 0);
-        }
+            newTextFile = setTag(textFile, 0);
+          }
 
-        fs.writeFileSync(fileName, textFile);
-    }
+          return write(fileName, newTextFile);
+        });
+      });
 
+      return Promise.all(lintedFilesP).then(() => {
+        sortedFiles.rightLinted.forEach(printSuccess);
+        sortedFiles.errorLinted.forEach(printError);
+        failCounter = sortedFiles.errorLinted.length;
 
-    sortedFiles.rightLinted.forEach(printSuccess);
-    sortedFiles.errorLinted.forEach(function anon(file){
-        failCounter++;
-        printError(file);
+        return Promise.resolve(failCounter);
+      });
     });
+  });
 
-    // Sum up the errors
-    if(failCounter){
-        console.log(warningC(
-                "You have to fix the " +
-                failCounter +
-                " failing files before commiting !"
-        ));
-    }else{
-        console.log(rightC("You can commit your changes !"));
-    }
-});
+  return failCounterP;
+}
 
 /**
  * getTag get the desired tag from the text of a file and returns it
  * @param  {String} textFile : The file to be parsed
  * @return {String} tag : Tag desired
  */
-function getTag(textFile){
-    var tag = matchTag.exec(textFile) ? matchTag.exec(textFile)[ 0 ] : "";
+function getTag(textFile) {
+  var tag = matchTag.exec(textFile) ? matchTag.exec(textFile)[0] : "";
 
-    return tag;
-};
+  return tag;
+}
 
 /**
- * setTag removes the previous tag if there was one and put a new one
+ * setTag deletes the previous tag if there was one and put a new one
  * @param {String}        textFile : The file to be tagged
  * @param {Number}        nbrErrors : Number of errors in the files
  * @param {Array<Object>} errors : Array or errors containing the rule, line and message
  * @return {String}       taggedText : Newly tagged file
  */
-function setTag(textFile, nbrErrors, errors){
-    var errTag;
-    var lineDiff = getLineDiff(textFile, nbrErrors);
-    var date = getFormatedTime(new Date());
-    var tag =
+function setTag(textFile, nbrErrors, errors) {
+  var errTag;
+  var lineDiff = getLineDiff(textFile, nbrErrors);
+  var date = getFormatedTime(new Date());
+  var tag =
         "/**<linter>" + eol +
         "<lastLinted>" + date + "<lastLinted>" + eol +
         "<errorCount>" + nbrErrors + "<errorCount>" + eol;
 
-    if(errors){
-        errTag = "<errors>" + eol;
-        errors.forEach(function anon(error){
-            errTag +=
+  if (errors) {
+    errTag = "<errors>" + eol;
+    errors.forEach(function anon(error) {
+      errTag +=
             tab + error.ruleId +
             " line " + (error.line + lineDiff) +
             " : " + error.message + eol;
-        });
-        errTag += "<errors>" + eol;
-        tag += errTag;
-    }
+    });
+    errTag += "<errors>" + eol;
+    tag += errTag;
+  }
+  tag += "<linter>" + "**/" + eol + eol;
 
-    tag += "<linter>" + "**/" + eol + eol;
-    return tag + removeTag(textFile);
+  return tag + deleteTag(textFile);
 }
 
 /**
- * removeTag removes the tag of a file
- * @param  {String} textFile : File that needs its tag to be removed
+ * deleteTag deletes the tag of a file
+ * @param  {String} textFile : File that needs its tag to be deleted
  * @return {String} tagLess : Tagless file
  */
-function removeTag(textFile){
-    return textFile.replace(matchTag, "");
+function deleteTag(textFile) {
+  return textFile.replace(matchTag, "");
 }
 
 /**
@@ -167,67 +149,62 @@ function removeTag(textFile){
  * @param  {[type]} nbrErrors [description]
  * @return {[type]}           [description]
  */
-function getLineDiff(textFile, nbrErrors){
-    var lineNbr = 5;
-    var errMarkup = 2;
-    var oldLineNbr = getTag(textFile).split(eol).length;
-    var newLineNbr = nbrErrors ? lineNbr + nbrErrors + errMarkup : lineNbr;
+function getLineDiff(textFile, nbrErrors) {
+  var lineNbr = 5;
+  var errMarkup = 2;
+  var tag = getTag(textFile);
+  var oldLineNbr = tag ? tag.split(eol).length - 1 : 0;
+  var newLineNbr = nbrErrors ? lineNbr + nbrErrors + errMarkup : lineNbr;
 
-    return newLineNbr - oldLineNbr;
+  return newLineNbr - oldLineNbr;
 }
 
 /**
- * sortFiles sorts the file according to whether it has been linted and passed, linted and failed or hasn't been linted yet
  * @param  {Object} filesHalfSorted : Current lists containing the sorted file names so far
  * @param  {String} fileName : file name to be sorted
  * @return {Object} filesMoreSorted : Updated lists containing the sorted file names
  */
-function sortLintedFiles(filesHalfSorted, fileName){
-    var filesMoreSorted = filesHalfSorted;
-    var textFile = fs.readFileSync(fileName, "utf8");
-    var tag = getTag(textFile) || "";
-    var lastLinted = tag.split("<lastLinted>")[ 1 ] || "";
-    var errorCount = tag.split("<errorCount>")[ 1 ] || "";
-    var timeModified = fs.statSync(fileName).mtime;
-    var lastModified = getFormatedTime(timeModified);
-
-    // Put the file in the right list
-    if(lastLinted === lastModified && errorCount > 0){
-        filesMoreSorted.errorLinted.push({
-            "filePath":   fileName,
-            "errorCount": errorCount
+function sortFiles(arrayLink) {
+  var sortedFiles = {
+    notLinted: [],
+    rightLinted: [],
+    errorLinted: []
+  };
+  var allSortedP = arrayLink.map((link) => {
+    var textFileP = read(link, "utf8");
+    var statsP = stat(link);
+    var sortedP = Promise.all([textFileP, statsP])
+        .then((val) => {
+          var textFile = val[0];
+          var stats = val[1];
+          updateSortedFiles(sortedFiles, link, textFile, stats);
         });
-    }else if(lastLinted === lastModified){
-        filesMoreSorted.rightLinted.push(fileName);
-    }else{
-        filesMoreSorted.notLinted.push(fileName);
-    }
 
-    return filesMoreSorted;
+    return sortedP;
+  });
+
+  //When all the files are sorted, we return the future object where they are sorted
+  return Promise.all(allSortedP).then(() => {
+    return sortedFiles;
+  });
 }
 
-/**
- * printError output an error message pointing to the faulty file and the number of errors found in it
- * @param  {Object} file : Contains the path to the failing file (link) and the number of errors in the failing file (errorCount)
- */
-function printError(file){
-    console.log(
-        linkC(file.filePath) +
-        errorC(" contains " + file.errorCount + " errors") +
-        eol + eol
-    );
-}
+function updateSortedFiles(sortedFiles, link, textFile, stats) {
+  var tag = getTag(textFile) || "";
+  var lastLinted = tag.split("<lastLinted>")[1] || "";
+  var errorCount = tag.split("<errorCount>")[1] || "";
+  var lastModified = getFormatedTime(stats.mtime);
 
-/**
- * printSuccess output a message pointing to the successful file
- * @param  {String} fileName : Name of the passing file
- */
-function printSuccess(fileName){
-    console.log(
-        linkC(fileName) +
-        rightC(" passed the linter :)") +
-        eol + eol
-    );
+  if (lastLinted === lastModified && errorCount > 0) {
+    sortedFiles.errorLinted.push({
+      filePath: link,
+      errorCount: errorCount
+    });
+  } else if (lastLinted === lastModified) {
+    sortedFiles.rightLinted.push(link);
+  } else {
+    sortedFiles.notLinted.push(link);
+  }
 }
 
 /**
@@ -235,16 +212,16 @@ function printSuccess(fileName){
  * @param  {Date}   date : date non formatée
  * @return {String} formatedDate : date formatée
  */
-function getFormatedTime(date){
-    var round = 30;
-    var roundedSec = Math.floor(date.getSeconds() / round);
-    var formatedTime = setZero(date.getDate()) + "/" +
+function getFormatedTime(date) {
+  var round = 30;
+  var roundedSec = Math.floor(date.getSeconds() / round);
+  var formatedTime = setZero(date.getDate()) + "/" +
         setZero(date.getMonth() + 1) + "/" +
         date.getFullYear() + " " +
         setZero(date.getHours()) + ":" +
         setZero(date.getMinutes() + roundedSec);
 
-    return formatedTime;
+  return formatedTime;
 }
 
 /**
@@ -252,8 +229,45 @@ function getFormatedTime(date){
  * @param {String}  time : Time that maybe needs to be more readable
  * @return {String} readableTime : Time that is readable for sure
  */
-function setZero(time){
-    var ten = 10;
+function setZero(time) {
+  var ten = 10;
 
-    return time < ten ? "0" + time : time;
+  return time < ten ? "0" + time : time;
 }
+
+/**
+ * printError output an error message pointing to the faulty file
+ * and the number of errors found in it
+ * @param  {Object} file : Contains the path to the failing file (link)
+ *                         and the number of errors in the failing file (errorCount)
+ */
+function printError(file) {
+  console.log(
+        linkC(file.filePath) +
+        errorC(" contains " + file.errorCount + " errors") +
+        eol
+    );
+}
+
+/**
+ * printSuccess output a message pointing to the successful file
+ * @param  {String} fileName : Name of the passing file
+ */
+function printSuccess(fileName) {
+  console.log(
+        linkC(fileName) +
+        rightC(" passed " + app + " :)") +
+        eol
+    );
+}
+
+exports.main = main;
+exports.getTag = getTag;
+exports.setTag = setTag;
+exports.deleteTag = deleteTag;
+exports.getLineDiff = getLineDiff;
+exports.sortFiles = sortFiles;
+exports.getFormatedTime = getFormatedTime;
+exports.setZero = setZero;
+exports.printError = printError;
+exports.printSuccess = printSuccess;
