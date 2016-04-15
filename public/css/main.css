@@ -1,0 +1,8 @@
+
+  #main .board .grid{
+    line-height: 0px;
+  }
+  #main .board .grid div{
+    border: solid 1px black;
+    display: inline-block;
+  }

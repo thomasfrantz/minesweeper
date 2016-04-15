@@ -2,5 +2,3 @@ node_modules/
 npm-debug.log
 config.local.json
 public/bower_components/
-public/js/
-public/css/
