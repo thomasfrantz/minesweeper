@@ -1,8 +1,24 @@
+#main .board .grid{
+  line-height: 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#main .board .grid .square{
+  border: solid 1px black;
+  background-color: grey;
+}
+#main .board .grid .square.show{
+  background-color: white;
+}
 
-  #main .board .grid{
-    line-height: 0px;
-  }
-  #main .board .grid div{
-    border: solid 1px black;
-    display: inline-block;
-  }
+#main .board .grid .square.valuem{
+  background-color: red;
+}
+
+#main .board .grid .square.notClicked{
+  opacity: 0.5;
+}
+
+#main .board .grid .square.flag{
+  background-color: yellow;
+}

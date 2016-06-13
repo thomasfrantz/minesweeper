@@ -31,6 +31,8 @@
   },
   "homepage": "https://github.com/thomasfrantz/minesweeper#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
     "cli-color": "^1.1.0",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.2",
@@ -39,6 +41,7 @@
   "dependencies": {
     "es6-promisify": "^3.0.0",
     "glob": "^6.0.1",
-    "http-server": "^0.8.5"
+    "http-server": "^0.8.5",
+    "native-promise-only": "^0.8.1"
   }
 }
